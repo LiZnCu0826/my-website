@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource id="1_script" path="res://scenes/UI/SatisfactionBar.gd" type="Script"]
+
+[node name="SatisfactionBar" type="HBoxContainer"]
+script = ExtResource("1_script")
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="IconLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+text = "💰"
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+text = "群体名"
+theme_override_font_sizes/font_size = 31
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 100.0
+value = 50.0
+show_percentage = false
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+text = "50"
+theme_override_font_sizes/font_size = 31
+horizontal_alignment = 2
