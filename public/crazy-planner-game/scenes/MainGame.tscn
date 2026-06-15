@@ -1,0 +1,467 @@
+[gd_scene format=3]
+
+[ext_resource id="1_main" path="res://scenes/MainGame.gd" type="Script"]
+[ext_resource id="2_daystart" path="res://scenes/UI/DayStartPanel.tscn" type="PackedScene"]
+[ext_resource id="3_dayend" path="res://scenes/UI/DayEndPanel.tscn" type="PackedScene"]
+[ext_resource id="4_gameover" path="res://scenes/GameOver.tscn" type="PackedScene"]
+[ext_resource id="5_bg" path="res://resources/bg_office.jpg" type="Texture2D"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.3, 0.1, 0.1, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(1, 0.3, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.12, 0.12, 0.16, 0.93)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.2, 0.2, 0.24, 0.95)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(1, 0.55, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 2.2
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="BgLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="BgTexture" type="TextureRect" parent="BgLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("5_bg")
+stretch_mode = 6
+
+[node name="BgDim" type="ColorRect" parent="BgLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.45)
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 1
+
+[node name="GameTitle" type="Label" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 777.8
+offset_top = 355.6
+offset_right = 1777.8
+offset_bottom = 600.0
+text = "策划也疯狂"
+theme_override_font_sizes/font_size = 107
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameTitleSub" type="Label" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 733.3
+offset_top = 511.1
+offset_right = 1822.2
+offset_bottom = 600.0
+text = "一款关于运营策划职场的压力取舍模拟器"
+theme_override_font_sizes/font_size = 31
+theme_override_colors/font_color = Color(0.85, 0.85, 0.92, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 1066.7
+offset_top = 666.7
+offset_right = 1488.9
+offset_bottom = 777.8
+text = "开始运营"
+theme_override_font_sizes/font_size = 44
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource(5)
+theme_override_styles/hover = SubResource(5)
+theme_override_styles/pressed = SubResource(5)
+
+[node name="TopBar" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 1.1
+anchor_right = 1.1
+offset_left = -933.3
+offset_right = 933.3
+offset_top = 13.3
+offset_bottom = 84.4
+theme_override_constants/separation = 24
+
+[node name="DayLabel" type="Label" parent="CanvasLayer/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "第 1 天"
+theme_override_font_sizes/font_size = 40
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "剩余操作: 5/5"
+theme_override_font_sizes/font_size = 36
+
+[node name="PenaltyBar" type="ProgressBar" parent="CanvasLayer/TopBar"]
+custom_minimum_size = Vector2(266.7, 44.4)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 100.0
+value = 0.0
+show_percentage = false
+theme_override_styles/background = SubResource(1)
+theme_override_styles/fill = SubResource(2)
+
+[node name="PenaltyLabel" type="Label" parent="CanvasLayer/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "压力: 0/100"
+theme_override_font_sizes/font_size = 31
+theme_override_colors/font_color = Color(1, 0.4, 0.3, 1)
+
+[node name="SlotPanel" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 288.9
+offset_top = 106.7
+offset_right = 2333.3
+offset_bottom = 266.7
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+theme_override_styles/panel = SubResource(3)
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/SlotPanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="CanvasLayer/SlotPanel/VBox"]
+layout_mode = 2
+text = "📋 今日卡组（选择5个运营方案）"
+theme_override_font_sizes/font_size = 31
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+
+[node name="SlotGrid" type="HBoxContainer" parent="CanvasLayer/SlotPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Slot1" type="PanelContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid"]
+custom_minimum_size = Vector2(266.7, 97.8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource(4)
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="CardHBox" type="HBoxContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot1/CardHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "⬜"
+theme_override_font_sizes/font_size = 36
+
+[node name="Label" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot1/CardHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.95, 0.95, 0.98, 1)
+autowrap_mode = 1
+
+[node name="Slot2" type="PanelContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid"]
+custom_minimum_size = Vector2(266.7, 97.8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource(4)
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="CardHBox" type="HBoxContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot2/CardHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "⬜"
+theme_override_font_sizes/font_size = 36
+
+[node name="Label" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot2/CardHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.95, 0.95, 0.98, 1)
+autowrap_mode = 1
+
+[node name="Slot3" type="PanelContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid"]
+custom_minimum_size = Vector2(266.7, 97.8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource(4)
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="CardHBox" type="HBoxContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot3/CardHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "⬜"
+theme_override_font_sizes/font_size = 36
+
+[node name="Label" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot3/CardHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.95, 0.95, 0.98, 1)
+autowrap_mode = 1
+
+[node name="Slot4" type="PanelContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid"]
+custom_minimum_size = Vector2(266.7, 97.8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource(4)
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="CardHBox" type="HBoxContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot4/CardHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "⬜"
+theme_override_font_sizes/font_size = 36
+
+[node name="Label" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot4/CardHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.95, 0.95, 0.98, 1)
+autowrap_mode = 1
+
+[node name="Slot5" type="PanelContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid"]
+custom_minimum_size = Vector2(266.7, 97.8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource(4)
+modulate = Color(1, 1, 1, 0.4)
+
+[node name="CardHBox" type="HBoxContainer" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot5/CardHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "⬜"
+theme_override_font_sizes/font_size = 36
+
+[node name="Label" type="Label" parent="CanvasLayer/SlotPanel/VBox/SlotGrid/Slot5/CardHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = ""
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.95, 0.95, 0.98, 1)
+autowrap_mode = 1
+
+[node name="SettleButton" type="Button" parent="CanvasLayer/SlotPanel/VBox"]
+visible = true
+layout_mode = 2
+disabled = true
+text = "结束今天"
+theme_override_font_sizes/font_size = 31
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(0.0, 71.1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource(5)
+theme_override_styles/hover = SubResource(5)
+theme_override_styles/pressed = SubResource(5)
+
+[node name="SatisfactionPanel" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 288.9
+offset_top = 124.4
+offset_right = 1022.2
+offset_bottom = 866.7
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+theme_override_styles/panel = SubResource(3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SatisfactionPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="Label" parent="CanvasLayer/SatisfactionPanel/VBoxContainer"]
+layout_mode = 2
+text = "👥 各玩家群体满意度"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+
+[node name="SatisfactionBars" type="VBoxContainer" parent="CanvasLayer/SatisfactionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="KpiPanel" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 288.9
+offset_top = 893.3
+offset_right = 1022.2
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+theme_override_styles/panel = SubResource(3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/KpiPanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="CanvasLayer/KpiPanel/VBoxContainer"]
+layout_mode = 2
+text = "📋 今日KPI"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+
+[node name="KpiBars" type="VBoxContainer" parent="CanvasLayer/KpiPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ActionPanel" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 288.9
+offset_top = 288.9
+offset_right = 1311.1
+offset_bottom = 1244.4
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+theme_override_styles/panel = SubResource(3)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ActionPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="Label" parent="CanvasLayer/ActionPanel/VBoxContainer"]
+layout_mode = 2
+text = "🎮 运营操作（选择一个执行）"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ActionPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActionContainer" type="VBoxContainer" parent="CanvasLayer/ActionPanel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HistorySeparator" type="HSeparator" parent="CanvasLayer/ActionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HistoryHeader" type="Label" parent="CanvasLayer/ActionPanel/VBoxContainer"]
+layout_mode = 2
+text = "📋 今日已执行"
+theme_override_font_sizes/font_size = 29
+theme_override_colors/font_color = Color(0.75, 0.75, 0.85, 1)
+
+[node name="ExecutedContainer" type="VBoxContainer" parent="CanvasLayer/ActionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="NotificationLabel" type="Label" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 666.7
+offset_top = 622.2
+offset_right = 1888.9
+offset_bottom = 711.1
+text = ""
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 1, 0.5, 1)
+horizontal_alignment = 1
+
+[node name="Overlay" type="Panel" parent="CanvasLayer"]
+visible = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 2.2
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color(0, 0, 0, 0.3)
+
+[node name="DayStartPanel" parent="CanvasLayer/Overlay" instance=ExtResource("2_daystart")]
+
+[node name="DayEndPanel" parent="CanvasLayer/Overlay" instance=ExtResource("3_dayend")]
+
+[node name="GameOverPanel" parent="CanvasLayer/Overlay" instance=ExtResource("4_gameover")]

@@ -1,0 +1,83 @@
+[gd_scene format=3]
+
+[ext_resource id="1_script" path="res://scenes/UI/DayStartPanel.gd" type="Script"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(1, 0.55, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.98, 0.97, 0.95, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="DayStartPanel" type="PanelContainer"]
+script = ExtResource("1_script")
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 835.6
+offset_top = 342.3
+offset_right = 1724.4
+offset_bottom = 1097.8
+theme_override_styles/panel = SubResource(2)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="CenterWrapper" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="DayLabel" type="Label" parent="MarginContainer/CenterWrapper/VBoxContainer"]
+layout_mode = 2
+text = "第 X 天"
+theme_override_font_sizes/font_size = 53
+theme_override_colors/font_color = Color(0.15, 0.15, 0.2, 1)
+horizontal_alignment = 1
+
+[node name="KpiNameLabel" type="Label" parent="MarginContainer/CenterWrapper/VBoxContainer"]
+layout_mode = 2
+text = "KPI名称"
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.85, 0.6, 0.1, 1)
+horizontal_alignment = 1
+
+[node name="DescLabel" type="Label" parent="MarginContainer/CenterWrapper/VBoxContainer"]
+layout_mode = 2
+text = "描述"
+theme_override_font_sizes/font_size = 29
+theme_override_colors/font_color = Color(0.35, 0.35, 0.4, 1)
+autowrap_mode = 1
+horizontal_alignment = 1
+
+[node name="KpiSummary" type="VBoxContainer" parent="MarginContainer/CenterWrapper/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/CenterWrapper/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "开始运营！"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource(1)
+theme_override_styles/hover = SubResource(1)
+theme_override_styles/pressed = SubResource(1)
