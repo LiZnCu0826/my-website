@@ -14,7 +14,7 @@
 
 | 平台 | 地址 |
 |------|------|
-| **CloudBase 静态托管** | [https://aaa-d8gu7fi38e2be9736-1438511117.tcloudbaseapp.com/](https://aaa-d8gu7fi38e2be9736-1438511117.tcloudbaseapp.com/) |
+| **CloudBase 静态托管** | [https://aaa-d8gu7fi38e2be9736-1438511117.tcloudbaseapp.com/portfolio/](https://aaa-d8gu7fi38e2be9736-1438511117.tcloudbaseapp.com/portfolio/) |
 | **GitHub Pages** | [https://lizncu0826.github.io/my-website/](https://lizncu0826.github.io/my-website/) |
 
 ## 本地开发
@@ -43,6 +43,8 @@ npm run build
 - **环境 ID**: `aaa-d8gu7fi38e2be9736`
 - **区域**: 上海 (ap-shanghai)
 - **静态托管域名**: `aaa-d8gu7fi38e2be9736-1438511117.tcloudbaseapp.com`
+- **部署路径**: `/portfolio/`（根路径留给"未来鹅" Demo）
+- **构建配置**: `vite.config.js` 中 `base: '/portfolio/'`
 
 ## 项目结构
 
